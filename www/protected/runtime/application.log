@@ -1,0 +1,23 @@
+2014/08/19 10:54:21 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\www\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CAssetManager.php:138
+Stack trace:
+#0 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CAssetManager.php(123): CAssetManager->setBasePath('C:\\Documents an...')
+#1 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CAssetManager.php(217): CAssetManager->getBasePath()
+#2 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CClientScript.php(510): CAssetManager->publish('C:\\Documents an...')
+#3 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CClientScript.php(547): CClientScript->getCoreScriptUrl()
+#4 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CClientScript.php(348): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CController.php(351): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CController.php(788): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\www\protected\controllers\SiteController.php(67): CController->render('login', Array)
+#9 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#10 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CWebApplication.php(282): CController->run('login')
+#14 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\Documents and Settings\Administrator\My Documents\idx-repo\simple-profile\www\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/sp/index.php/site/login
+HTTP_REFERER=http://localhost/sp/
+---
