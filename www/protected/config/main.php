@@ -48,7 +48,7 @@ return array(
 		//),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=profile',
+			'connectionString' => 'mysql:host=localhost;dbname=simple_profile',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
