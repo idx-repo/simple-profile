@@ -1,0 +1,114 @@
+<?php
+
+/**
+ * This is the model class for table "profiles".
+ *
+ * The followings are the available columns in table 'profiles':
+ * @property integer $id
+ * @property integer $comp_id
+ * @property string $hq_address
+ * @property string $hq_phone
+ * @property string $hq_fax
+ * @property string $website
+ * @property string $started_operation
+ * @property string $associated_companies
+ */
+class profiles extends CActiveRecord
+{
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'profiles';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('comp_id, hq_address, hq_phone, hq_fax, website, started_operation, associated_companies', 'required'),
+			array('comp_id', 'numerical', 'integerOnly'=>true),
+			array('hq_phone, hq_fax, website, associated_companies', 'length', 'max'=>30),
+			array('started_operation', 'length', 'max'=>4),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('id, comp_id, hq_address, hq_phone, hq_fax, website, started_operation, associated_companies', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'id' => 'ID',
+			'comp_id' => 'Comp',
+			'hq_address' => 'Hq Address',
+			'hq_phone' => 'Hq Phone',
+			'hq_fax' => 'Hq Fax',
+			'website' => 'Website',
+			'started_operation' => 'Started Operation',
+			'associated_companies' => 'Associated Companies',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('comp_id',$this->comp_id);
+		$criteria->compare('hq_address',$this->hq_address,true);
+		$criteria->compare('hq_phone',$this->hq_phone,true);
+		$criteria->compare('hq_fax',$this->hq_fax,true);
+		$criteria->compare('website',$this->website,true);
+		$criteria->compare('started_operation',$this->started_operation,true);
+		$criteria->compare('associated_companies',$this->associated_companies,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return profiles the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+}
