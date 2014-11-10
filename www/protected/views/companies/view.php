@@ -25,8 +25,8 @@ $this->widget('zii.widgets.CDetailView', array(
 	),
 ));
 // Profile
-$mprofile = new profiles();
-$mprofile->attributes = array('comp_id' => $model->id);
+$mprofiles = new profiles();
+$mprofile = $mprofiles->findByAttributes(array('comp_id' => $model->id));
 $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$mprofile,
 	'attributes'=>array(
