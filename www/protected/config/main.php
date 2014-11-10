@@ -50,8 +50,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=simple_profile',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'sp',
+			'password' => 'sp',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
@@ -79,6 +79,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'akun.3musketeerz@gmail.com',
 	),
 );
