@@ -60,7 +60,7 @@ class ShareholdersController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($id)
 	{
 		$model=new shareholders;
 
@@ -71,11 +71,12 @@ class ShareholdersController extends Controller
 		{
 			$model->attributes=$_POST['shareholders'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('companies/view','id'=>$model->comp_id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'compid'=>$id,
 		));
 	}
 
