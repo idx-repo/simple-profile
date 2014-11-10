@@ -7,10 +7,10 @@ $this->breadcrumbs=array(
 	'['.$model->code.'] '.$model->name,
 );
 $this->menu=array(
-	array('label'=>'Add/edit profiles', 'url'=>array('profiles/create')),
-	array('label'=>'Add shareholders', 'url'=>array('shareholders/create')),
-	array('label'=>'Add commissioners', 'url'=>array('commissioners/create')),
-	array('label'=>'Add directors', 'url'=>array('directors/create')),
+	array('label'=>'Add/edit profiles', 'url'=>array('profiles/create','id'=>$model->id)),
+	array('label'=>'Add shareholders', 'url'=>array('shareholders/create','id'=>$model->id)),
+	array('label'=>'Add commissioners', 'url'=>array('commissioners/create','id'=>$model->id)),
+	array('label'=>'Add directors', 'url'=>array('directors/create','id'=>$model->id)),
 );
 ?>
 

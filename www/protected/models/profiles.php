@@ -60,9 +60,9 @@ class profiles extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'comp_id' => 'Comp',
-			'hq_address' => 'Hq Address',
-			'hq_phone' => 'Hq Phone',
-			'hq_fax' => 'Hq Fax',
+			'hq_address' => 'Headquarter Address',
+			'hq_phone' => 'Headquarter Phone',
+			'hq_fax' => 'Headquarter Fax',
 			'website' => 'Website',
 			'started_operation' => 'Started Operation',
 			'associated_companies' => 'Associated Companies',
