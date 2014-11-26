@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Add/edit profiles', 'url'=>array('profiles/create','id'=>$model->id)),
 	array('label'=>'Add shareholders', 'url'=>array('shareholders/create','id'=>$model->id)),
-	array('label'=>'Add commissioners', 'url'=>array('commissioners/create','id'=>$model->id)),
+	array('label'=>'Add commissioners', 'url'=>array('commisioners/create','id'=>$model->id)),
 	array('label'=>'Add directors', 'url'=>array('directors/create','id'=>$model->id)),
 );
 ?>
