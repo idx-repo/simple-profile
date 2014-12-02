@@ -19,11 +19,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'comp_id'); ?>
-		<?php echo $form->textField($model,'comp_id'); ?>
-		<?php echo $form->error($model,'comp_id'); ?>
-	</div>
+	<?php echo $form->hiddenField($model,'comp_id',array('value'=>$compid)); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>

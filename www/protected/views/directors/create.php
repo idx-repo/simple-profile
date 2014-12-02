@@ -7,12 +7,14 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
+/*
 $this->menu=array(
 	array('label'=>'List directors', 'url'=>array('index')),
 	array('label'=>'Manage directors', 'url'=>array('admin')),
 );
+*/
 ?>
 
 <h1>Create directors</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'compid'=>$compid)); ?>
