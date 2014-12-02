@@ -60,7 +60,7 @@ class DirectorsController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($compid)
+	public function actionCreate($id)
 	{
 		$model=new directors;
 
@@ -76,7 +76,7 @@ class DirectorsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'compid',=>$compid,
+			'compid'=>$id,
 		));
 	}
 

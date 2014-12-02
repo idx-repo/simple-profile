@@ -60,7 +60,7 @@ class CommisionersController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($compid)
+	public function actionCreate($id)
 	{
 		$model=new commisioners;
 
@@ -76,7 +76,7 @@ class CommisionersController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'id'=>$compid,
+			'compid'=>$id,
 		));
 	}
 
