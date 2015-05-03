@@ -134,7 +134,7 @@ class CompaniesController extends Controller
 	}
 	public function loadProfile($id)
 	{
-		$model=profiles::model()->findByAttributes('comp_id'=>$id);
+		$model=profiles::model()->findByAttributes(array('comp_id'=>$id));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
