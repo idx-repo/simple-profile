@@ -51,8 +51,8 @@ class CompaniesController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+		$this->render('profile',array(
+			'model'=>$this->loadProfile($id),
 		));
 	}
 
@@ -132,7 +132,13 @@ class CompaniesController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-
+	public function loadProfile($id)
+	{
+		$model=profiles::model()->findByAttributes('comp_id'=>$id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
 	/**
 	 * Performs the AJAX validation.
 	 * @param companies $model the model to be validated
