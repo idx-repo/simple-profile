@@ -51,8 +51,8 @@ class CompaniesController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('profile',array(
-			'model'=>$this->loadProfile($id),
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
 		));
 	}
 

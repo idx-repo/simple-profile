@@ -3,8 +3,8 @@
 /* @var $model profiles */
 
 $this->breadcrumbs=array(
-	'Profiles'=>array('index'),
-	$model->id,
+	'Companies'=>array('index'),
+	Companies::model()->findByPk($model->id)->name,
 );
 
 $this->menu=array(
@@ -21,8 +21,8 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'comp_id',
+	//	'id',
+	//	'comp_id',
 		'hq_address',
 		'hq_phone',
 		'hq_fax',
