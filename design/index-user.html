@@ -1,0 +1,131 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
+
+	<!-- blueprint CSS framework -->
+	<link rel="stylesheet" type="text/css" href="./css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="./css/print.css" media="print" />
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="./css/ie.css" media="screen, projection" />
+	<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="./css/main.css" />
+	<link rel="stylesheet" type="text/css" href="./css/form.css" />
+
+	<link rel="stylesheet" type="text/css" href="./assets/94c2ea6c/gridview/styles.css" />
+<link rel="stylesheet" type="text/css" href="./assets/49792728/pager.css" />
+<script type="text/javascript" src="./assets/8587cb3/jquery.js"></script>
+<script type="text/javascript" src="./assets/8587cb3/jquery.ba-bbq.js"></script>
+<title>Company Profile - Companies</title>
+</head>
+
+<body>
+
+<div class="container" id="page">
+
+	<div id="header">
+		<div id="logo">Company Profile</div>
+	</div><!-- header -->
+
+	<div id="mainmenu">
+		<ul id="yw4">
+<li><a href="./index.php/site/index">Home</a></li>
+<li><a href="./index.php/site/logout">Logout (admin)</a></li>
+</ul>	</div><!-- mainmenu -->
+			<div class="breadcrumbs">
+<a href="./index.php">Home</a> &raquo; <span>Companies</span></div><!-- breadcrumbs -->
+	
+	<div class="span-19">
+	<div id="content">
+		
+<h1>Manage Companies</h1>
+
+<p>
+You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
+
+<a class="search-button" href="#">Advanced Search</a><div class="search-form" style="display:none">
+
+<div class="wide form">
+
+<form id="yw0" action="./index.php/companies/index" method="get">
+	<div class="row">
+		<label for="companies_id">ID</label>		<input name="companies[id]" id="companies_id" type="text" />	</div>
+
+	<div class="row">
+		<label for="companies_code">Code</label>		<input size="4" maxlength="4" name="companies[code]" id="companies_code" type="text" />	</div>
+
+	<div class="row">
+		<label for="companies_name">Name</label>		<input size="30" maxlength="30" name="companies[name]" id="companies_name" type="text" />	</div>
+
+	<div class="row buttons">
+		<input type="submit" name="yt0" value="Search" />	</div>
+
+</form>
+</div><!-- search-form --></div><!-- search-form -->
+
+<div id="companies-grid" class="grid-view">
+<div class="summary">Displaying 1-1 of 1 result.</div>
+<table class="items">
+<thead>
+<tr>
+<th id="companies-grid_c0"><a class="sort-link" href="./index.php/companies/index?companies_sort=code">Code</a></th><th id="companies-grid_c1"><a class="sort-link" href="./index.php/companies/index?companies_sort=name">Name</a></th><th class="button-column" id="companies-grid_c2">&nbsp;</th></tr>
+<tr class="filters">
+<td><input name="companies[code]" type="text" maxlength="5" /></td><td><input name="companies[name]" type="text" maxlength="60" /></td><td>&nbsp;</td></tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AALI</td><td>PT ASTRA AGRO LESTARI Tbk</td><td class="button-column"><a class="view" title="View" href="./index.php/companies/1"><img src="./assets/94c2ea6c/gridview/view.png" alt="View" /></a> <a class="update" title="Update" href="./index.php/companies/update/1"><img src="./assets/94c2ea6c/gridview/update.png" alt="Update" /></a></td></tr>
+</tbody>
+</table>
+<div class="keys" style="display:none" title="./index.php/companies/index"><span>1</span></div>
+</div>	</div><!-- content -->
+</div>
+<div class="span-5 last">
+	<div id="sidebar">
+	<div class="portlet" id="yw2">
+<div class="portlet-decoration">
+<div class="portlet-title">Operations</div>
+</div>
+<div class="portlet-content">
+<ul class="operations" id="yw3">
+<li><a href="./index.php/companies/create">Add companies</a></li>
+</ul></div>
+</div>	</div><!-- sidebar -->
+</div>
+
+	<div class="clear"></div>
+
+	<div id="footer">
+		Copyright &copy; 2014 by Three Musketeerz.<br/>
+		All Rights Reserved.<br/>
+		Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a>.	</div><!-- footer -->
+
+</div><!-- page -->
+
+<script type="text/javascript" src="./assets/94c2ea6c/gridview/jquery.yiigridview.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery(function($) {
+
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#companies-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+
+jQuery('#companies-grid').yiiGridView({'ajaxUpdate':['companies-grid'],'ajaxVar':'ajax','pagerClass':'pager','loadingClass':'grid-view-loading','filterClass':'filters','tableClass':'items','selectableRows':1,'enableHistory':false,'updateSelector':'{page}, {sort}','filterSelector':'{filter}','pageVar':'companies_page'});
+});
+/*]]>*/
+</script>
+</body>
+</html>
