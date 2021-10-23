@@ -24,22 +24,24 @@ $this->widget('zii.widgets.CDetailView', array(
 		'name',
 	),
 ));
+
 // Profile
-$mprofiles = new profiles();
-$mprofile = $mprofiles->findByAttributes(array('comp_id' => $model->id));
-$this->widget('zii.widgets.CDetailView', array(
-	'data'=>$mprofile,
-	'attributes'=>array(
-		//'id',
-		//'comp_id',
-		'hq_address',
-		'hq_phone',
-		'hq_fax',
-		'website',
-		'started_operation',
-		'associated_companies',
-	),
-));
+$mprofiles = new profiles('search');
+if($mprofile = $mprofiles->findByAttributes(array('comp_id' => $model->id))) {
+	$this->widget('zii.widgets.CDetailView', array(
+		'data'=>$mprofile,
+		'attributes'=>array(
+			//'id',
+			//'comp_id',
+			'hq_address',
+			'hq_phone',
+			'hq_fax',
+			'website',
+			'started_operation',
+			'associated_companies',
+		),
+	));
+};
 ?>
 
 <p style='margin-top: 48px;text-align:center;'>Shareholders</p>
