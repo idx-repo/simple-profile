@@ -28,7 +28,7 @@ class companies extends CActiveRecord
 		return array(
 			array('code, name', 'required'),
 			array('code', 'length', 'max'=>5),
-			array('name', 'length', 'max'=>60),
+			array('name', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, code, name', 'safe', 'on'=>'search'),

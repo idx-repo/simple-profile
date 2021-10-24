@@ -29,7 +29,7 @@ class shareholders extends CActiveRecord
 		return array(
 			array('comp_id, name, shares', 'required'),
 			array('comp_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>30),
+			array('name', 'length', 'max'=>100),
 			array('shares', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

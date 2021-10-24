@@ -29,8 +29,8 @@ class directors extends CActiveRecord
 		return array(
 			array('comp_id, name, job_desc', 'required'),
 			array('comp_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>30),
-			array('job_desc', 'length', 'max'=>20),
+			array('name', 'length', 'max'=>100),
+			array('job_desc', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, comp_id, name, job_desc', 'safe', 'on'=>'search'),

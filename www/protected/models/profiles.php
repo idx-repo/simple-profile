@@ -33,7 +33,7 @@ class profiles extends CActiveRecord
 		return array(
 			array('comp_id, hq_address, hq_phone, hq_fax, website, started_operation, associated_companies', 'required'),
 			array('comp_id', 'numerical', 'integerOnly'=>true),
-			array('hq_phone, hq_fax, website, associated_companies', 'length', 'max'=>30),
+			array('hq_phone, hq_fax, website, associated_companies', 'length', 'max'=>40),
 			array('started_operation', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
