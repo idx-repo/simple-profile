@@ -3,7 +3,9 @@
 Aplikasi **Simple Profile** merupakan sistem manajemen profil perusahaan dan emiten terdaftar di Bursa Efek Indonesia (IDX). Dokumen ini berfokus pada arsitektur, implementasi teknis, dan rencana pengembangan aplikasi berbasis **Yii 2** (`yii2app/`), yang dikembangkan sebagai modernisasi dari versi Proof-of-Concept (PoC) berbasis Yii 1.
 
 > [!NOTE]
-> Untuk dokumentasi lengkap mengenai arsitektur, model, controller, dan alur kerja aplikasi versi PoC sebelumnya, silakan merujuk ke **[README-Yii1.md](README-Yii1.md)**.
+> - Untuk dokumentasi lengkap mengenai versi PoC Yii 1, silakan merujuk ke **[README-Yii1.md](README-Yii1.md)**.
+> - Untuk catatan rinci keputusan teknis & arsitektur, lihat **[DEVELOPMENT.md](DEVELOPMENT.md)**.
+> - Untuk laporan pengujian fungsional & verifikasi endpoint, lihat **[TESTING.md](TESTING.md)**.
 
 ---
 
@@ -316,9 +318,11 @@ vendor/bin/codecept run functional
 
 - [x] Evaluasi dan dokumentasi perbandingan arsitektur Yii 1 ([README-Yii1.md](README-Yii1.md)).
 - [x] Pembaruan dependensi modern Yii 2 (Yii 2.0.48, Symfony Mailer, Bootstrap 4).
-- [ ] Porting lengkap model ActiveRecord Yii 2 (`Company`, `Profile`, `Shareholder`, `Commissioner`, `Director`).
-- [ ] Implementasi UI Master-Detail interaktif berbasis Bootstrap 4 Tabs.
-- [ ] Integrasi otentikasi pengguna berbasis basis data dengan hashing password.
+- [x] Porting lengkap model ActiveRecord Yii 2 (`Company`, `Profile`, `Shareholder`, `Commissioner`, `Director`).
+- [x] Implementasi UI Master-Detail interaktif berbasis Bootstrap 4 Tabs.
+- [x] Integrasi otentikasi pengguna berbasis basis data dengan hashing password.
+- [x] Penyusunan catatan arsitektur & pengembangan komprehensif ([DEVELOPMENT.md](DEVELOPMENT.md)).
+- [x] Verifikasi dan laporan pengujian fungsional menyeluruh ([TESTING.md](TESTING.md)).
 - [ ] Pengumpulan & penyajian data indeks emiten Bursa Efek Indonesia:
   - Data emiten konstituen **IDX30**.
   - Data emiten konstituen **IDX45**.

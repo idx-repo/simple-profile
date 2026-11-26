@@ -2,10 +2,10 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=simple_profile',
+    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=simple_profile',
     'username' => 'sp',
     'password' => 'sp',
-    'charset' => 'utf8',
+    'charset' => 'utf8mb4',
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

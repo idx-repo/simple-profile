@@ -2,38 +2,91 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+
+/**
+ * User model merepresentasikan entitas pengguna yang terhubung ke tabel database "users"
+ * dan mendukung otentikasi serta enkripsi password (hashing).
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $password_hash
+ * @property string $auth_key
+ * @property string|null $access_token
+ * @property string|null $email
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
+ */
+class User extends ActiveRecord implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
 
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'users';
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username'], 'required'],
+            [['username'], 'trim'],
+            [['username'], 'string', 'min' => 2, 'max' => 50],
+            [['username'], 'unique'],
+
+            ['email', 'trim'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 100],
+            ['email', 'unique'],
+
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Nama Pengguna',
+            'email' => 'Alamat Email',
+            'status' => 'Status Akun',
+            'created_at' => 'Dibuat Pada',
+            'updated_at' => 'Diperbarui Pada',
+        ];
+    }
 
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -41,30 +94,18 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne(['access_token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
-     * Finds user by username
+     * Mencari pengguna berdasarkan username.
      *
      * @param string $username
      * @return static|null
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -72,7 +113,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->getPrimaryKey();
     }
 
     /**
@@ -80,7 +121,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->auth_key;
     }
 
     /**
@@ -88,17 +129,61 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->getAuthKey() === $authKey;
     }
 
     /**
-     * Validates password
+     * Memvalidasi password menggunakan hashing algoritma Yii Security (bcrypt / Argon2).
      *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
+     * @param string $password kata sandi yang akan divalidasi
+     * @return bool true jika password cocok dengan hash
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        if (empty($this->password_hash)) {
+            return false;
+        }
+
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
+    /**
+     * Meng-hash password dan menyimpannya ke atribut password_hash.
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    /**
+     * Membuat auth_key acak untuk fitur 'remember me'.
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Membuat access_token acak untuk otentikasi API / REST.
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord && empty($this->auth_key)) {
+                $this->generateAuthKey();
+            }
+            return true;
+        }
+        return false;
     }
 }
